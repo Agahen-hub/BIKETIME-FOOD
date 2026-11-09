@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0D0D0D">
+<title>BIKETIME FOOD & TOCHKA COFFEE — Меню</title>
+<meta name="description" content="Электронное меню BIKETIME FOOD и TOCHKA COFFEE, Павлодар: бургеры, хот-доги, кофе, чай, лимонады и коктейли с возможностью онлайн-заказа.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%232A2C74' stroke='%23F26B4F' stroke-width='6'/%3E%3Ctext x='50' y='64' font-size='44' text-anchor='middle'%3E%F0%9F%8D%94%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['"Russo One"', 'Impact', 'sans-serif'],
+          body: ['Inter', 'system-ui', 'sans-serif']
+        }
+      }
+    }
+  };
+</script>
+
+<style>
+  :root{
+    --bg:#0D0D0D;
+    --bg-2:#141414;
+    --bg-3:#1b1b1b;
+    --line:#2a2a2a;
+    --text:#f5f5f5;
+    --muted:#9a9a9a;
+    --accent:#E50914;
+    --accent-2:#FF7A1A;
+    --glow:rgba(229,9,20,.38);
+    --switch-h:64px;
+  }
+  [data-loc="tochka"]{
+    --accent:#FF5A14;
+    --accent-2:#FFA31A;
+    --glow:rgba(255,122,26,.38);
+  }
+
+  *{ -webkit-tap-highlight-color:transparent; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    min-height:100vh;
+    background-image:
+      radial-gradient(900px 420px at 50% -80px, var(--glow), transparent 70%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-attachment:fixed;
+    transition:background-color .4s;
+    padding-bottom:90px;
+  }
+  .font-display{ font-family:'Russo One',Impact,sans-serif; letter-spacing:.02em; }
+
+  /* ---------- Sticky switcher ---------- */
+  .switcher{
+    position:sticky; top:0; z-index:50;
+    height:var(--switch-h);
+    padding:10px 12px;
+    background:rgba(13,13,13,.88);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .seg{
+    position:relative; height:100%;
+    max-width:560px; margin:0 auto;
+    display:grid; grid-template-columns:1fr 1fr;
+    padding:4px; border-radius:16px;
+    background:var(--bg-2); border:1px solid var(--line);
+  }
+  .seg-pill{
+    position:absolute; left:4px; top:4px; bottom:4px;
+    width:calc(50% - 4px);
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    box-shadow:0 8px 24px -8px var(--glow), inset 0 0 0 1px rgba(255,255,255,.14);
+    transition:transform .38s cubic-bezier(.2,.8,.2,1);
+  }
+  .seg[data-active="tochka"] .seg-pill{ transform:translateX(100%); }
+  .seg button{
+    position:relative; z-index:1;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    border:0; background:transparent; color:var(--muted);
+    font-family:'Russo One',Impact,sans-serif;
+    font-size:clamp(12px,3.4vw,15px); letter-spacing:.04em;
+    cursor:pointer; border-radius:12px;
+    transition:color .25s, transform .15s;
+    white-space:nowrap;
+  }
+  .seg button[aria-selected="true"]{ color:#fff; }
+  .seg button:active{ transform:scale(.97); }
+  .seg button .ico{ font-size:1.15em; line-height:1; }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding:26px 16px 14px; text-align:center; }
+  .hero-inner{ max-width:720px; margin:0 auto; }
+  .logo-wrap{
+    width:clamp(112px,34vw,144px); aspect-ratio:1; margin:0 auto 14px;
+    filter:drop-shadow(0 12px 34px var(--glow));
+    animation:float 6s ease-in-out infinite;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .logo-wrap svg, .logo-wrap img{
+    width:100%; height:100%; object-fit:contain; border-radius:24px; display:block;
+  }
+  @keyframes float{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+  .hero h1{
+    margin:0; font-size:clamp(28px,8.5vw,46px); line-height:1.05; text-transform:uppercase;
+  }
+  .hero h1 .grad{
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .tagline{ margin:8px 0 0; color:var(--muted); font-size:14px; letter-spacing:.14em; text-transform:uppercase; }
+  .hero-actions{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:18px;
+  }
+  .pill-link{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:999px;
+    background:var(--bg-2); border:1px solid var(--line);
+    color:var(--text); text-decoration:none; font-size:14px; font-weight:600;
+    transition:border-color .2s, transform .15s, box-shadow .2s;
+  }
+  .pill-link:hover{ border-color:var(--accent); box-shadow:0 8px 22px -10px var(--glow); }
+  .pill-link:active{ transform:scale(.97); }
+  .pill-link svg{ width:18px; height:18px; flex:none; }
+  .pill-link.insta{
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    border-color:transparent; color:#fff;
+  }
+  .swap{ animation:swap .45s ease both; }
+  @keyframes swap{ from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none} }
+
+  /* ---------- Filter bar & Drag-to-Scroll Chips ---------- */
+  .filter-bar{
+    position:sticky; top:var(--switch-h); z-index:40;
+    padding:10px 0 8px;
+    background:rgba(13,13,13,.92);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 12px; }
+  .search{
+    position:relative; display:flex; align-items:center;
+  }
+  .search svg.lens{ position:absolute; left:14px; width:18px; height:18px; color:var(--muted); pointer-events:none; }
+  .search input{
+    width:100%; height:46px; padding:0 44px 0 42px;
+    background:var(--bg-2); color:var(--text);
+    border:1px solid var(--line); border-radius:14px;
+    font:500 15px 'Inter',sans-serif; outline:none;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .search input::placeholder{ color:#6f6f6f; }
+  .search input:focus{ border-color:var(--accent); box-shadow:0 0 0 3px var(--glow); }
+  .search input::-webkit-search-cancel-button{ display:none; }
+  .search .clear{
+    position:absolute; right:8px; width:30px; height:30px; border-radius:50%;
+    border:0; background:var(--bg-3); color:#ddd; cursor:pointer; display:none;
+    font-size:16px; line-height:1;
+  }
+  .search .clear.show{ display:block; }
+
+  /* Двигающаяся строка категорий (drag on PC + touch on mobile) */
+  .chips-wrapper{
+    position:relative;
+    max-width:760px; margin:8px auto 0;
+    overflow:hidden;
+  }
+  .chips{
+    display:flex; gap:8px; overflow-x:auto; padding:4px 12px 6px;
+    scrollbar-width:none; -ms-overflow-style:none;
+    cursor:grab; user-select:none; -webkit-user-select:none;
+  }
+  .chips::-webkit-scrollbar{ display:none; }
+  .chips.is-dragging{
+    cursor:grabbing;
+    scroll-behavior:auto !important;
+  }
+  .chip{
+    flex:none;
+    display:inline-flex; align-items:center; gap:6px;
+    padding:8px 14px; border-radius:999px;
+    background:var(--bg-2); border:1px solid var(--line); color:#cfcfcf;
+    font:600 13.5px 'Inter',sans-serif; cursor:pointer; white-space:nowrap;
+    transition:background-color .2s, border-color .2s, color .2s, transform .15s;
+  }
+  .chip:hover{ border-color:#4a4a4a; }
+  .chip:active{ transform:scale(.96); }
+  .chip.active{
+    color:#fff; border-color:transparent;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    box-shadow:0 8px 20px -8px var(--glow);
+  }
+  .chip .cnt{ font-size:11px; opacity:.75; font-weight:700; }
+
+  /* ---------- Menu ---------- */
+  main{ max-width:760px; margin:0 auto; padding:18px 12px 30px; }
+  .section{ margin-bottom:26px; }
+  .section-head{
+    display:flex; align-items:center; gap:10px; margin:6px 2px 12px;
+  }
+  .section-head h2{
+    margin:0; font-family:'Russo One',Impact,sans-serif;
+    font-size:clamp(20px,5.6vw,26px); text-transform:uppercase; letter-spacing:.03em;
+  }
+  .section-head .em{ font-size:24px; }
+  .section-head .line{ flex:1; height:2px; background:linear-gradient(90deg,var(--accent),transparent); border-radius:2px; opacity:.7; }
+  .section-head .n{ font-size:12px; color:var(--muted); font-weight:700; }
+
+  .grid{ display:grid; gap:12px; grid-template-columns:1fr; }
+  @media (min-width:700px){ .grid{ grid-template-columns:1fr 1fr; } }
+
+  .card{
+    position:relative;
+    display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:12px;
+    padding:12px; border-radius:20px;
+    background:linear-gradient(160deg,#181818,#111);
+    border:1px solid var(--line);
+    transition:transform .2s, border-color .2s, box-shadow .25s;
+    animation:rise .4s ease both; animation-delay:calc(var(--i,0) * 25ms);
+    overflow:hidden; cursor:pointer;
+  }
+  .card::before{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.4;
+    background:repeating-linear-gradient(135deg, rgba(255,255,255,.018) 0 2px, transparent 2px 9px);
+  }
+  .card:hover{ transform:translateY(-2px); border-color:var(--accent); box-shadow:0 14px 34px -16px var(--glow); }
+  .card:active{ transform:scale(.985); }
+  @keyframes rise{ from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none} }
+
+  .thumb{
+    position:relative; width:76px; height:76px; border-radius:15px; overflow:hidden; flex:none;
+    background:radial-gradient(circle at 30% 25%, #3a1a16, #1a1a1a 70%);
+    display:flex; align-items:center; justify-content:center; font-size:32px;
+  }
+  .thumb img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    filter:saturate(1.1) contrast(1.05);
+  }
+  .thumb::after{
+    content:""; position:absolute; inset:0; border-radius:15px;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
+    background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.35));
+  }
+  .info{ min-width:0; position:relative; }
+  .info h3{ margin:0; font-size:16px; font-weight:700; line-height:1.25; }
+  .info p{
+    margin:3px 0 0; font-size:12.5px; color:var(--muted); line-height:1.35;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  mark{ background:var(--accent); color:#fff; border-radius:4px; padding:0 2px; }
+
+  .price{
+    position:relative; white-space:nowrap;
+    padding:7px 11px; border-radius:12px;
+    font-family:'Inter',sans-serif; font-weight:800; font-size:14px; color:#fff;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    box-shadow:0 8px 20px -8px var(--glow), inset 0 0 0 1px rgba(255,255,255,.16);
+  }
+  .sizes{
+    grid-column:1 / -1; position:relative;
+    display:grid; gap:8px; margin-top:4px;
+  }
+  .sizes.c1{ grid-template-columns:1fr; }
+  .sizes.c2{ grid-template-columns:repeat(2,1fr); }
+  .sizes.c3{ grid-template-columns:repeat(3,1fr); }
+  .size{
+    display:flex; flex-direction:column; align-items:center; gap:2px;
+    padding:6px 4px; border-radius:12px;
+    background:var(--bg-3); border:1px solid var(--line);
+  }
+  .size span{ font-size:11px; color:var(--muted); font-weight:600; }
+  .size b{
+    font-size:13.5px; font-weight:800; color:#fff;
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    white-space:nowrap;
+  }
+
+  /* ---------- Modals ---------- */
+  .modal-backdrop{
+    position:fixed; inset:0; z-index:100;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    display:flex; align-items:flex-end; justify-content:center;
+    opacity:0; pointer-events:none; transition:opacity .3s ease;
+  }
+  @media (min-width:640px){
+    .modal-backdrop{ align-items:center; padding:20px; }
+  }
+  .modal-backdrop.show{ opacity:1; pointer-events:auto; }
+
+  .modal-sheet{
+    background:var(--bg-2);
+    border:1px solid var(--line);
+    width:100%; max-width:520px;
+    border-radius:28px 28px 0 0;
+    max-height:90vh; display:flex; flex-direction:column;
+    transform:translateY(100%); transition:transform .35s cubic-bezier(.16,1,.3,1);
+    box-shadow:0 -10px 40px rgba(0,0,0,.6);
+    overflow:hidden;
+  }
+  @media (min-width:640px){
+    .modal-sheet{
+      border-radius:24px;
+      transform:scale(.95) translateY(20px);
+    }
+  }
+  .modal-backdrop.show .modal-sheet{
+    transform:translateY(0) scale(1);
+  }
+
+  .modal-header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 20px; border-bottom:1px solid var(--line);
+  }
+  .modal-header h3{
+    margin:0; font-family:'Russo One',sans-serif; font-size:18px; text-transform:uppercase; letter-spacing:.02em;
+  }
+  .modal-close{
+    background:var(--bg-3); border:1px solid var(--line);
+    color:#aaa; width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px;
+    transition:background .2s, color .2s;
+  }
+  .modal-close:hover{ background:var(--accent); color:#fff; }
+
+  .modal-body{
+    padding:20px; overflow-y:auto; flex:1;
+  }
+  .modal-footer{
+    padding:14px 20px calc(14px + env(safe-area-inset-bottom));
+    border-top:1px solid var(--line); background:var(--bg);
+  }
+
+  /* Product details modal specific */
+  .p-img-box{
+    position:relative; width:100%; height:200px; border-radius:20px; overflow:hidden;
+    background:radial-gradient(circle at center, #2e1a17, #131313);
+    display:flex; align-items:center; justify-content:center; font-size:70px; margin-bottom:16px;
+  }
+  .p-img-box img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  }
+  .p-title{
+    font-family:'Russo One',sans-serif; font-size:22px; margin:0 0 6px;
+  }
+  .p-desc-box{
+    background:var(--bg-3); border:1px solid var(--line);
+    border-radius:14px; padding:12px; margin:14px 0;
+  }
+  .p-desc-label{
+    font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; margin-bottom:4px;
+  }
+  .p-desc-val{
+    font-size:14px; line-height:1.45; color:#eee;
+  }
+  .size-picker-title{
+    font-size:12px; font-weight:700; color:var(--muted); margin:14px 0 8px; text-transform:uppercase;
+  }
+  .size-picker-options{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(100px, 1fr)); gap:8px;
+  }
+  .size-option-btn{
+    background:var(--bg-3); border:1px solid var(--line); border-radius:14px;
+    padding:10px 8px; text-align:center; cursor:pointer; transition:all .2s;
+  }
+  .size-option-btn.selected{
+    border-color:var(--accent); background:rgba(229,9,20,.12);
+    box-shadow:0 0 0 1px var(--accent);
+  }
+  [data-loc="tochka"] .size-option-btn.selected{
+    background:rgba(255,90,20,.12);
+  }
+  .size-option-btn .lbl{ font-size:12px; color:var(--muted); }
+  .size-option-btn .val{ font-size:15px; font-weight:800; color:#fff; margin-top:2px; }
+
+  /* Counter in Product Modal */
+  .qty-row{
+    display:flex; align-items:center; justify-content:space-between; margin-top:16px; gap:12px;
+  }
+  .qty-ctrl{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--bg-3); border:1px solid var(--line); border-radius:14px; padding:4px 6px;
+  }
+  .qty-btn{
+    width:34px; height:34px; border-radius:10px; border:0;
+    background:#262626; color:#fff; font-size:18px; font-weight:700;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:background .2s;
+  }
+  .qty-btn:active{ transform:scale(.92); }
+  .qty-val{ min-width:28px; text-align:center; font-weight:700; font-size:16px; }
+
+  .btn-add-cart{
+    flex:1; height:46px; border-radius:14px; border:0;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    color:#fff; font:700 15px 'Inter',sans-serif; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    box-shadow:0 8px 24px -6px var(--glow); transition:transform .15s, opacity .2s;
+  }
+  .btn-add-cart:active{ transform:scale(.97); }
+
+  /* ---------- Floating Cart Button ---------- */
+  .cart-fab{
+    position:fixed; left:50%; bottom:calc(16px + env(safe-area-inset-bottom));
+    transform:translateX(-50%) translateY(120%); z-index:55;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    box-shadow:0 10px 30px -4px var(--glow), 0 0 0 1px rgba(255,255,255,.2);
+    color:#fff; padding:12px 22px; border-radius:999px; border:0;
+    display:flex; align-items:center; gap:12px; cursor:pointer;
+    font-family:'Inter',sans-serif; font-size:15px; font-weight:700;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .2s;
+    white-space:nowrap;
+  }
+  .cart-fab.show{ transform:translateX(-50%) translateY(0); }
+  .cart-fab:active{ transform:translateX(-50%) scale(.96); }
+  .cart-fab .fab-badge{
+    background:#fff; color:#111; font-size:12px; font-weight:800;
+    padding:2px 8px; border-radius:999px;
+  }
+
+  /* ---------- Cart Sheet Items ---------- */
+  .cart-list{ display:flex; flex-direction:column; gap:10px; }
+  .cart-item{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:10px; border-radius:16px; background:var(--bg-3); border:1px solid var(--line);
+  }
+  .c-item-info{ flex:1; min-width:0; }
+  .c-item-title{ font-weight:700; font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .c-item-sub{ font-size:12px; color:var(--muted); }
+  .c-item-price{ font-weight:800; font-size:14px; color:#fff; }
+
+  .cart-note-input{
+    width:100%; border:1px solid var(--line); border-radius:14px;
+    background:var(--bg-3); color:#fff; padding:10px 14px; font-size:13.5px;
+    margin-top:14px; outline:none; resize:none;
+  }
+  .cart-note-input:focus{ border-color:var(--accent); }
+
+  .cart-total-bar{
+    display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;
+  }
+  .cart-total-lbl{ font-size:15px; color:var(--muted); font-weight:600; }
+  .cart-total-val{ font-size:22px; font-family:'Russo One',sans-serif; color:#fff; }
+
+  .btn-whatsapp{
+    width:100%; height:48px; border-radius:14px; border:0;
+    background:#25D366; color:#fff; font:700 15px 'Inter',sans-serif;
+    cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;
+    box-shadow:0 8px 24px -6px rgba(37,211,102,.45);
+    transition:transform .15s, opacity .2s;
+  }
+  .btn-whatsapp:hover{ opacity:.95; }
+  .btn-whatsapp:active{ transform:scale(.97); }
+
+  /* ---------- Empty states & generic ---------- */
+  .empty{
+    text-align:center; padding:46px 16px; color:var(--muted);
+    border:1px dashed var(--line); border-radius:20px; background:var(--bg-2);
+  }
+  .empty .big{ font-size:44px; }
+  .empty h3{ margin:8px 0 4px; color:#fff; font-family:'Russo One',sans-serif; font-size:20px; }
+  .empty button{
+    margin-top:14px; padding:10px 16px; border-radius:999px; border:0; cursor:pointer;
+    color:#fff; font:700 14px 'Inter',sans-serif;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  }
+  .result-note{ margin:0 2px 12px; font-size:13px; color:var(--muted); }
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    background:linear-gradient(180deg,var(--bg-2),#0a0a0a);
+    padding:32px 16px calc(32px + env(safe-area-inset-bottom));
+  }
+  .foot-inner{ max-width:760px; margin:0 auto; }
+  .foot-logo{ width:76px; height:76px; margin:0 auto 14px; display:flex; align-items:center; justify-content:center; }
+  .foot-logo svg, .foot-logo img{ width:100%; height:100%; object-fit:contain; border-radius:18px; }
+  .addr-grid{ display:grid; gap:12px; margin-top:18px; }
+  @media (min-width:640px){ .addr-grid{ grid-template-columns:1fr 1fr; } }
+  .addr{
+    padding:16px; border-radius:18px; background:var(--bg-3); border:1px solid var(--line);
+  }
+  .addr h4{ margin:0 0 8px; font-family:'Russo One',sans-serif; font-size:17px; text-transform:uppercase; }
+  .addr .row{ display:flex; gap:10px; align-items:flex-start; margin-top:6px; font-size:14px; color:#cfcfcf; }
+  .addr .row svg{ width:17px; height:17px; flex:none; margin-top:2px; color:var(--accent-2); }
+  .addr a{ color:inherit; text-decoration:underline; text-decoration-color:#555; text-underline-offset:3px; }
+  .copy{ text-align:center; color:#6f6f6f; font-size:12.5px; margin-top:24px; }
+
+  .to-top{
+    position:fixed; right:16px; bottom:calc(84px + env(safe-area-inset-bottom)); z-index:45;
+    width:42px; height:42px; border-radius:50%; border:0; cursor:pointer; color:#fff;
+    background:var(--bg-2); border:1px solid var(--line);
+    box-shadow:0 8px 20px rgba(0,0,0,.5);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; transform:translateY(14px); pointer-events:none; transition:all .3s;
+  }
+  .to-top.show{ opacity:1; transform:none; pointer-events:auto; }
+  .to-top svg{ width:18px; height:18px; }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+
+<body data-loc="biketime">
+
+<!-- SVG символ для BikeTime логотипа -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="logo-biketime" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="98" fill="#1B1D55"/>
+      <circle cx="100" cy="100" r="94" fill="#2A2C74"/>
+      <circle cx="100" cy="100" r="90" fill="none" stroke="#F26B4F" stroke-width="10" stroke-dasharray="11.78 11.78"/>
+      <circle cx="100" cy="100" r="84" fill="none" stroke="#F26B4F" stroke-width="4"/>
+      <circle cx="100" cy="100" r="78" fill="none" stroke="#fff" stroke-width="2.5"/>
+      <g fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round">
+        <path d="M91 50c-5-5 4-8-1-13s3-8-1-12"/>
+        <path d="M101 48c-5-5 4-8-1-13s3-8-1-12" opacity=".9"/>
+      </g>
+      <g transform="translate(28 30) scale(.72)">
+        <path d="M138 62c26-4 26 26-2 28" fill="none" stroke="#F26B4F" stroke-width="5" stroke-linecap="round"/>
+        <path d="M60 52C60 88 78 102 100 102C122 102 140 88 140 52Z" fill="#2A2C74" stroke="#F26B4F" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M64 52Q64 33 100 33Q136 33 136 52Z" fill="#F26B4F"/>
+        <g fill="#fff">
+          <ellipse cx="84" cy="45" rx="2.6" ry="1.6" transform="rotate(-20 84 45)"/>
+          <ellipse cx="99" cy="40" rx="2.6" ry="1.6"/>
+          <ellipse cx="114" cy="43" rx="2.6" ry="1.6" transform="rotate(20 114 43)"/>
+          <ellipse cx="122" cy="48" rx="2.4" ry="1.5" transform="rotate(30 122 48)"/>
+          <ellipse cx="90" cy="49" rx="2.4" ry="1.5"/>
+          <ellipse cx="106" cy="49" rx="2.4" ry="1.5"/>
+        </g>
+        <path d="M66 56q6 5 12 0t12 0 12 0 12 0 12 0 12 0" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/>
+        <rect x="68" y="62" width="64" height="8" rx="4" fill="#C4452E"/>
+        <path d="M70 74h60q-2 11-30 11T70 74Z" fill="#F26B4F"/>
+        <path d="M50 110Q100 126 150 110" fill="none" stroke="#F26B4F" stroke-width="5" stroke-linecap="round"/>
+        <path d="M56 106h88" stroke="#F26B4F" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <path d="M36 120H164" stroke="#F26B4F" stroke-width="3" stroke-linecap="round"/>
+      <text x="100" y="146" text-anchor="middle" font-family="'Russo One',Impact,sans-serif" font-size="27"
+            fill="#fff" stroke="#2A2C74" stroke-width="1.2" paint-order="stroke"
+            textLength="128" lengthAdjust="spacingAndGlyphs">BIKE TIME</text>
+      <path d="M50 160h24M126 160h24" stroke="#F26B4F" stroke-width="2.6" stroke-linecap="round"/>
+      <text transform="translate(100 168) skewX(-14)" text-anchor="middle"
+            font-family="'Russo One',Impact,sans-serif" font-size="24" fill="#F26B4F"
+            textLength="62" lengthAdjust="spacingAndGlyphs">FOOD</text>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= ПЕРЕКЛЮЧАТЕЛЬ ЗАВЕДЕНИЙ ================= -->
+<nav class="switcher" aria-label="Выбор заведения">
+  <div class="seg" id="seg" role="tablist" data-active="biketime">
+    <span class="seg-pill" aria-hidden="true"></span>
+    <button role="tab" id="tab-biketime" data-loc="biketime" aria-selected="true"><span class="ico">🍔</span>BIKETIME FOOD</button>
+    <button role="tab" id="tab-tochka" data-loc="tochka" aria-selected="false"><span class="ico">☕</span>TOCHKA COFFEE</button>
+  </div>
+</nav>
+
+<!-- ================= ШАПКА ================= -->
+<header class="hero">
+  <div class="hero-inner" id="hero">
+    <div class="logo-wrap" id="brandLogoWrap" role="img" aria-label="Логотип">
+      <svg viewBox="0 0 200 200"><use href="#logo-biketime"/></svg>
+    </div>
+    <h1 class="font-display" id="brandName"><span class="grad">BIKETIME</span> FOOD</h1>
+    <p class="tagline" id="brandTag">Бургеры · Хот-доги · Кофе</p>
+    <div class="hero-actions">
+      <a class="pill-link" id="addrLink" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        <span id="addrText">—</span>
+      </a>
+      <a class="pill-link insta" id="brandInsta" href="https://www.instagram.com/bike_timepvl" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        <span id="instaText">@bike_timepvl</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= ПОИСК + КАТЕГОРИИ (С возможностью скролла и перетаскивания мыши) ================= -->
+<div class="filter-bar" id="filterBar">
+  <div class="wrap">
+    <label class="search">
+      <svg class="lens" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" inputmode="search" enterkeyhint="search" autocomplete="off" placeholder="Поиск по меню: бургер, латте, мохито…" aria-label="Поиск по меню">
+      <button class="clear" id="clear" type="button" aria-label="Очистить поиск">✕</button>
+    </label>
+  </div>
+  <div class="chips-wrapper">
+    <div class="chips" id="chips" role="tablist" aria-label="Категории"></div>
+  </div>
+</div>
+
+<!-- ================= МЕНЮ ================= -->
+<main id="menu" aria-live="polite"></main>
+
+<!-- ================= ПЛАВАЮЩАЯ КНОПКА КОРЗИНЫ ================= -->
+<button class="cart-fab" id="cartFab" type="button" aria-label="Открыть корзину">
+  <span>🛒 Корзина</span>
+  <span class="fab-badge" id="cartCountBadge">0</span>
+  <span id="cartSumBadge">0 ₸</span>
+</button>
+
+<!-- ================= МОДАЛЬНОЕ ОКНО ТОВАРА ================= -->
+<div class="modal-backdrop" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalProductTitle">
+  <div class="modal-sheet">
+    <div class="modal-header">
+      <h3 id="modalProductTitle">Детали товара</h3>
+      <button class="modal-close" id="modalCloseBtn" type="button" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Контент модалки -->
+    </div>
+    <div class="modal-footer" id="modalFooter">
+      <div class="qty-row">
+        <div class="qty-ctrl">
+          <button class="qty-btn" id="modalMinusBtn" type="button">−</button>
+          <span class="qty-val" id="modalQtyVal">1</span>
+          <button class="qty-btn" id="modalPlusBtn" type="button">+</button>
+        </div>
+        <button class="btn-add-cart" id="modalAddCartBtn" type="button">
+          <span>Добавить</span>
+          <b id="modalPriceVal">0 ₸</b>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= МОДАЛЬНОЕ ОКНО КОРЗИНЫ ================= -->
+<div class="modal-backdrop" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="modalCartTitle">
+  <div class="modal-sheet">
+    <div class="modal-header">
+      <h3 id="modalCartTitle">Ваш заказ</h3>
+      <button class="modal-close" id="cartCloseBtn" type="button" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="modal-body" id="cartBody">
+      <!-- Содержимое корзины -->
+    </div>
+    <div class="modal-footer" id="cartFooter">
+      <div class="cart-total-bar">
+        <span class="cart-total-lbl">Итого к оплате:</span>
+        <span class="cart-total-val" id="cartTotalVal">0 ₸</span>
+      </div>
+      <button class="btn-whatsapp" id="cartOrderWhatsappBtn" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span>Заказать в WhatsApp</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ПОДВАЛ ================= -->
+<footer>
+  <div class="foot-inner text-center">
+    <div class="foot-logo" id="footLogo"><svg viewBox="0 0 200 200"><use href="#logo-biketime"/></svg></div>
+    <h3 class="font-display" style="font-size:20px;margin:0">BIKETIME FOOD · TOCHKA COFFEE</h3>
+    <p style="color:var(--muted);font-size:14px;margin:6px 0 0">Быстрое питание и свежий кофе в Павлодаре</p>
+
+    <div class="addr-grid text-left">
+      <div class="addr">
+        <h4>🍔 BIKETIME FOOD</h4>
+        <div class="row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <a id="f-addr-biketime" href="#" target="_blank" rel="noopener">—</a>
+        </div>
+        <div class="row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span id="f-hours-biketime">—</span>
+        </div>
+      </div>
+      <div class="addr">
+        <h4>☕ TOCHKA COFFEE</h4>
+        <div class="row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <a id="f-addr-tochka" href="#" target="_blank" rel="noopener">—</a>
+        </div>
+        <div class="row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span id="f-hours-tochka">—</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top:20px">
+      <a class="pill-link insta" href="https://www.instagram.com/bike_timepvl" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        Мы в Instagram
+      </a>
+    </div>
+    <p class="copy">© <span id="year">2026</span> BIKETIME FOOD · TOCHKA COFFEE. Все права защищены.</p>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Наверх">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 6-6 6 6"/></svg>
+</button>
+
+<script>
+/* =====================================================================
+   КАРТИНКИ И ЛОГОТИПЫ
+   ===================================================================== */
+// Логотип с изображения 1 для Tochka Coffee
+const LOGO_TOCHKA_IMG = 'https://i.ibb.co.com/jPzQxZ0W/image-1-logo.png';
+
+const U = (id) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=360&q=70`;
+const IMG = {
+  hotdog:    U('1612392062631-94dd858cba88'),
+  burger:    U('1568901346375-23c9450c58cd'),
+  burger2:   U('1550547660-d9450f859349'),
+  snack:     U('1573080496219-bb080dd4f877'),
+  croissant: U('1555507036-ab1f4038808a'),
+  coffee:    U('1509042239860-f550ce710b93'),
+  latte:     U('1495474472287-4d71bcdd2085'),
+  black:     U('1461023058943-07fcbe16d735'),
+  ice:       U('1517701604599-bb29b565090c'),
+  filter:    U('1495474472287-4d71bcdd2085'),
+  sport:     U('1509042239860-f550ce710b93'),
+  tea:       U('1556679343-c7306c1976bc'),
+  hot:       U('1542990253-0d0f5be5f0ed'),
+  lemonade:  U('1621263764928-df1444c5e859'),
+  shake:     U('1572490122747-3968b75cc699')
+};
+
+/* =====================================================================
+   ДАННЫЕ ЗАВЕДЕНИЙ И РАЗДЕЛЬНЫЕ НОМЕРА WHATSAPP
+   ===================================================================== */
+const SIZES_250_350_400 = ['250 мл', '350 мл', '400 мл'];
+const sz = (prices) => prices.map((p, i) => [SIZES_250_350_400[i], p]);
+
+const LOCATIONS = {
+  biketime: {
+    key: 'biketime',
+    name: 'BIKETIME FOOD',
+    nameHtml: '<span class="grad">BIKETIME</span> FOOD',
+    tagline: 'Бургеры · Хот-доги · Кофе',
+    address: 'г. Павлодар, Улица Майры, 37/1 (киоск)',
+    mapQuery: 'Павлодар, улица Майры, 37/1',
+    hours: 'Часы работы уточняйте в Instagram',
+    whatsapp: '77051234567', // <-- Номер WhatsApp BIKETIME FOOD (без знака +)
+    insta: 'https://www.instagram.com/bike_timepvl',
+    instaHandle: '@bike_timepvl',
+    cats: [
+      { id: 'hotdogs', name: 'Хот-доги', emoji: '🌭', img: IMG.hotdog, items: [
+        { id: 'bt_hd1', n: 'Хот-дог куриный', p: 800, d: 'Сочная куриная сосиска, мягкая булочка, фирменные соусы.' },
+        { id: 'bt_hd2', n: 'Френч-дог горчичный', d: 'Классическая хрустящая французская булка, сосиска, пикантная горчица.', p: 950 },
+        { id: 'bt_hd3', n: 'Френч-дог стандарт', d: 'Французская булочка, сосиска, кетчуп, майонез.', p: 950 },
+        { id: 'bt_hd4', n: 'Френч-дог сырный', d: 'Французская булка, сосиска, нежнейший сырный соус.', p: 950 },
+        { id: 'bt_hd5', n: 'Френч-дог с огурчиками', d: 'Кетчуп, майонез, хрустящие солёные огурчики.', p: 1050 },
+        { id: 'bt_hd6', n: 'Френч-дог горчица + огурчики', d: 'Пикантная горчица и маринованные хрустящие огурчики.', p: 1050 }
+      ]},
+      { id: 'burgers', name: 'Бургеры', emoji: '🍔', img: IMG.burger, items: [
+        { id: 'bt_bg1', n: 'Бургер говяжий', p: 1150, d: 'Натуральная говяжья котлета, лист салата, томаты, авторский соус.' },
+        { id: 'bt_bg2', n: 'Бургер куриный', p: 1000, d: 'Нежное куриное филе, соус, хрустящие овощи на подрумяненной булочке.' },
+        { id: 'bt_bg3', n: 'Чизбургер говяжий', p: 1200, d: 'Говяжья котлета, расплавленный ломтик сыра чеддер, фирменный соус.' },
+        { id: 'bt_bg4', n: 'Чизбургер куриный', p: 1150, d: 'Куриная котлета, сыр чеддер, свежие овощи и соус.' }
+      ]},
+      { id: 'double', name: 'Двойные бургеры', emoji: '🍔', img: IMG.burger2, items: [
+        { id: 'bt_dbg1', n: 'Двойной бургер говяжий', p: 1800, d: 'Две сочные говяжьи котлеты, максимум насыщенного мясного вкуса.' },
+        { id: 'bt_dbg2', n: 'Двойной бургер куриный', p: 1400, d: 'Две сочные куриные котлеты в аппетитной пышной булке.' },
+        { id: 'bt_dbg3', n: 'Двойной чизбургер говяжий', p: 1950, d: 'Две котлеты из говядины и двойной слой сыра чеддер.' },
+        { id: 'bt_dbg4', n: 'Двойной чизбургер куриный', p: 1550, d: 'Две куриные котлеты, двойной сыр и фирменная заправка.' }
+      ]},
+      { id: 'snacks', name: 'Снэки и выпечка', emoji: '🍟', img: IMG.snack, items: [
+        { id: 'bt_sn1', n: 'Картошка фри', p: 500, d: 'Хрустящий золотистый картофель фри с морской солью.' },
+        { id: 'bt_sn2', n: 'Соус «Кетчуп»', d: 'Классический томатный порционный соус.', p: 100 },
+        { id: 'bt_sn3', n: 'Соус «Сырный»', d: 'Нежный сливочно-сырный соус.', p: 100 },
+        { id: 'bt_sn4', n: 'Сэндвич мини', p: 350, d: 'Быстрый сэндвич с сыром и ветчиной.', img: IMG.snack },
+        { id: 'bt_sn5', n: 'Сэндвич', p: 600, d: 'Сытный тостовый сэндвич со свежей начинкой.', img: IMG.snack },
+        { id: 'bt_sn6', n: 'Круассан с Nutella и бананом', p: 800, d: 'Воздушный свежий круассан, щедрый слой Nutella и сладкий банан.', img: IMG.croissant }
+      ]},
+      { id: 'coffee', name: 'Кофе', emoji: '☕', img: IMG.coffee, items: [
+        { id: 'bt_cf1', n: 'Горячий шоколад', v: '400 мл', p: 900, d: 'Густой ароматный горячий шоколад.', img: IMG.hot },
+        { id: 'bt_cf2', n: 'Эспрессо', p: 500, d: 'Крепкий бодрящий шот эспрессо из свежесмолотых зерен.' },
+        { id: 'bt_cf3', n: 'Американо', v: '400 мл', p: 650, d: 'Классический американо с мягкой плотной пенкой крема.' },
+        { id: 'bt_cf4', n: 'Капучино', v: '350 мл', p: 900, d: 'Сбалансированный кофе со стойкой шелковистой молочной пеной.' },
+        { id: 'bt_cf5', n: 'Латте', v: '400 мл', p: 900, d: 'Нежный молочно-кофейный напиток с мягким вкусом.' },
+        { id: 'bt_cf6', n: 'Кофе 3 в 1', p: 250, d: 'Быстрый сладкий кофейный напиток.' },
+        { id: 'bt_cf7', n: 'Айс латте', v: '500 мл', p: 1000, d: 'Освежающий кофе со льдом и охлажденным молоком.', img: IMG.ice },
+        { id: 'bt_cf8', n: 'Айс американо', v: '500 мл', p: 950, d: 'Холодный бодрящий американо со льдом.', img: IMG.ice },
+        { id: 'bt_cf9', n: 'Сироп в кофе', d: 'Добавка любого сиропа на ваш вкус (ваниль, карамель, орех).', p: 100 }
+      ]},
+      { id: 'tea', name: 'Чай', emoji: '🍵', img: IMG.tea, items: [
+        { id: 'bt_t1', n: 'Чай малиновый', v: '400 мл', p: 800, d: 'Согревающий чай с натуральным малиновым пюре.' },
+        { id: 'bt_t2', n: 'Чай облепиховый', v: '400 мл', p: 800, d: 'Витаминный напиток из натуральной алтайской облепихи.' },
+        { id: 'bt_t3', n: 'Чай имбирный', v: '400 мл', p: 800, d: 'Пряный чай со свежим корнем имбиря и лимоном.' },
+        { id: 'bt_t4', n: 'Чай зелёный / чёрный', v: '400 мл', p: 150, d: 'Классический заварной чай.' },
+        { id: 'bt_t5', n: 'Чай с лимоном', v: '400 мл', p: 200, d: 'Зелёный или чёрный чай со свежим лимоном.' },
+        { id: 'bt_t6', n: 'Чай с лимоном и мёдом', v: '400 мл', p: 300, d: 'Полезный чай с натуральным медом и долькой лимона.' },
+        { id: 'bt_t7', n: 'Чай с молоком', v: '400 мл', p: 250, d: 'Традиционный чай с горячим молоком.' },
+        { id: 'bt_t8', n: 'Чай с молоком и мёдом', v: '400 мл', p: 350, d: 'Нежный сливочный чай с цветочным медом.' }
+      ]},
+      { id: 'cold', name: 'Лимонады и коктейли', emoji: '🥤', img: IMG.lemonade, items: [
+        { id: 'bt_lm1', n: 'Лимонад Мохито', v: '500 мл', p: 1100, d: 'Свежая мята, лайм, газированная вода и тростниковый сироп.' },
+        { id: 'bt_lm2', n: 'Лимонад Киви', v: '500 мл', p: 900, d: 'Яркий тропический вкус сочного спелого киви.' },
+        { id: 'bt_lm3', n: 'Лимонад Апельсин', v: '500 мл', p: 900, d: 'Цитрусовый освежающий газированный лимонад.' },
+        { id: 'bt_lm4', n: 'Молочный коктейль Шоколад', v: '500 мл', p: 950, d: 'Пломбир, охлажденное молоко и бельгийский шоколад.', img: IMG.shake },
+        { id: 'bt_lm5', n: 'Молочный коктейль Клубника', v: '500 мл', p: 950, d: 'Густой молочный шейк с натуральным клубничным вкусом.', img: IMG.shake },
+        { id: 'bt_lm6', n: 'Молочный коктейль Ваниль', v: '500 мл', p: 950, d: 'Классический нежный ванильный милкшейк.', img: IMG.shake }
+      ]}
+    ]
+  },
+
+  tochka: {
+    key: 'tochka',
+    name: 'TOCHKA COFFEE',
+    nameHtml: '<span class="grad">TOCHKA</span> COFFEE',
+    tagline: 'Кофе · Фильтр · Спорт кофе',
+    address: 'г. Павлодар, Усольский микрорайон, 2а',
+    mapQuery: 'Павлодар, Усольский микрорайон, 2а',
+    hours: 'Часы работы уточняйте в Instagram',
+    whatsapp: '77071234567', // <-- Номер WhatsApp TOCHKA COFFEE (без знака +)
+    insta: 'https://www.instagram.com/bike_timepvl',
+    instaHandle: '@tochka_coffee',
+    cats: [
+      { id: 'milk', name: 'Кофе с молоком', emoji: '☕', img: IMG.latte, items: [
+        { id: 'tc_ml1', n: 'Капучино', s: sz([990, 1190, 1290]), d: 'Идеальное соотношение эспрессо и бархатистой молочной пены.' },
+        { id: 'tc_ml2', n: 'Латте', s: sz([990, 1090, 1190]), d: 'Мягкий кофейный напиток с большим количеством вспененного молока.' },
+        { id: 'tc_ml3', n: 'РАФ', s: sz([1290, 1390, 1490]), d: 'Нежнейший сливочный кофе, взбитый с ванильным сахаром.' },
+        { id: 'tc_ml4', n: 'Моккачино', s: sz([990, 1090, 1190]), d: 'Гармония эспрессо, горячего шоколада и молока.' },
+        { id: 'tc_ml5', n: 'Флэт Уайт', v: '250 мл', p: 990, d: 'Насыщенный двойной эспрессо с тонким слоем молока.' }
+      ]},
+      { id: 'black', name: 'Чёрный кофе', emoji: '🫘', img: IMG.black, items: [
+        { id: 'tc_bl1', n: 'Американо', s: sz([890, 1090, 1190]), d: 'Свежезаваренный чёрный кофе на отборном зерне.' },
+        { id: 'tc_bl2', n: 'Лунго', p: 790, d: 'Эспрессо с увеличенным временем экстракции для легкой терпкости.' },
+        { id: 'tc_bl3', n: 'Доппио', p: 690, d: 'Двойная порция классического эспрессо.' },
+        { id: 'tc_bl4', n: 'Эспрессо', p: 490, d: 'Плотный шот кофе с плотной ореховой пенкой.' }
+      ]},
+      { id: 'ice', name: 'ICE кофе', emoji: '🧊', img: IMG.ice, items: [
+        { id: 'tc_ic1', n: 'ICE Американо', v: '500 мл', p: 1190, d: 'Холодный чистый кофе со льдом, отлично утоляет жажду.' },
+        { id: 'tc_ic2', n: 'ICE Латте', v: '500 мл', p: 1190, d: 'Освежающий холодный кофе с молоком и кусочками льда.' },
+        { id: 'tc_ic3', n: 'ICE Капучино', v: '500 мл', p: 1290, d: 'Холодный капучино с воздушной взбитой пенкой.' },
+        { id: 'tc_ic4', n: 'Бамбл Апельсин', v: '500 мл', p: 1490, d: 'Легендарное сочетание карамельного сиропа, апельсинового сока и эспрессо.' },
+        { id: 'tc_ic5', n: 'Бамбл Вишня', v: '500 мл', p: 1490, d: 'Сочный вишневый сок со льдом и порцией крепкого кофе.' },
+        { id: 'tc_ic6', n: 'Фраппучино', v: '500 мл', p: 1690, d: 'Взбитый ледяной кофейный десерт с нежными сливками.' }
+      ]},
+      { id: 'filter', name: 'Фильтр кофе', emoji: '🫖', img: IMG.filter, items: [
+        { id: 'tc_fl1', n: 'Воронка (V60)', p: 2000, d: 'Альтернативное заваривание спешелти зерна, раскрывающее яркие ягодные и фруктовые ноты.' },
+        { id: 'tc_fl2', n: 'Аэропресс', p: 1500, d: 'Плотный и чистый напиток с богатым вкусовым профилем.' }
+      ]},
+      { id: 'sport', name: 'Спорт кофе и зерно', emoji: '💪', img: IMG.sport, items: [
+        { id: 'tc_sp1', n: 'Протеин кофе', p: 2000, d: 'Кофе с добавлением сывороточного изолята белка для энергии и восстановления.' },
+        { id: 'tc_sp2', n: 'Спорт кофе в банке', p: 2000, d: 'Удобная порция премиального бодрящего кофе с собой.' },
+        { id: 'tc_sp3', n: 'Кофе в зёрнах «Точка Бленд»', v: '1 кг', p: 18000, d: 'Фирменная свежая обжарка 100% арабики высшего сорта.' },
+        { id: 'tc_sp4', n: 'Сухой сироп (пудра)', p: 290, d: 'Ароматная сладкая добавка для домашнего кофе.' }
+      ]},
+      { id: 'hot', name: 'Горячие напитки и чай', emoji: '🍵', img: IMG.tea, items: [
+        { id: 'tc_ht1', n: 'Горячий шоколад / какао', v: '400 мл', p: 1190, d: 'Настоящее какао на молоке с бархатистой текстурой.', img: IMG.hot },
+        { id: 'tc_ht2', n: 'Облепиха-мёд', v: '400 мл', p: 1190, d: 'Натуральные ягоды облепихи с цветочным мёдом.' },
+        { id: 'tc_ht3', n: 'Облепиха-имбирь', v: '400 мл', p: 1190, d: 'Пряный согревающий ягодный микс.' },
+        { id: 'tc_ht4', n: 'Имбирь-мёд', v: '400 мл', p: 1190, d: 'Ароматный иммунный чай со свежим имбирем.' },
+        { id: 'tc_ht5', n: 'Клюква микс', v: '400 мл', p: 1190, d: 'Кисло-сладкий морс-чай из свежих ягод клюквы.' },
+        { id: 'tc_ht6', n: 'Чёрный / зелёный чай', v: '400 мл', p: 300, d: 'Листовой чай высокого качества.' }
+      ]},
+      { id: 'cold', name: 'Холодные напитки', emoji: '🥤', img: IMG.lemonade, items: [
+        { id: 'tc_cd1', n: 'Лимонад Мохито Классик', v: '500 мл', p: 1490, d: 'Лайм, свежая перечная мята и лед.' },
+        { id: 'tc_cd2', n: 'Лимонад Черри Рэд', v: '500 мл', p: 1490, d: 'Насыщенный вкус спелой вишни с пузырьками содовой.' },
+        { id: 'tc_cd3', n: 'Лимонад Киви Мята', v: '500 мл', p: 1490, d: 'Освежающий дуэт мяты и спелого киви.' },
+        { id: 'tc_cd4', n: 'Лимонад Цитрус Микс', v: '500 мл', p: 1490, d: 'Апельсин, грейпфрут и лимон.' },
+        { id: 'tc_cd5', n: 'Лимонад Мята Блю', v: '500 мл', p: 1490, d: 'Эффектный лимонад блю кюрасао с прохладой мяты.' },
+        { id: 'tc_cd6', n: 'Милк шейк Ваниль', v: '500 мл', p: 1490, d: 'Густой классический ванильный молочный коктейль.', img: IMG.shake },
+        { id: 'tc_cd7', n: 'Милк шейк Клубника', v: '500 мл', p: 1490, d: 'Сливочное мороженое и ягодное клубничное пюре.', img: IMG.shake },
+        { id: 'tc_cd8', n: 'Милк шейк Шоколад', v: '500 мл', p: 1490, d: 'Густой молочный коктейль с шоколадным топпингом.', img: IMG.shake },
+        { id: 'tc_cd9', n: 'Милк шейк Банан', v: '500 мл', p: 1490, d: 'Нежный сливочно-банановый милкшейк.', img: IMG.shake },
+        { id: 'tc_cd10', n: 'Милк шейк Фисташка', v: '500 мл', p: 1490, d: 'Благородный вкус зеленой фисташки с мороженым.', img: IMG.shake },
+        { id: 'tc_cd11', n: 'Милк шейк Тропик', v: '500 мл', p: 1490, d: 'Экзотический фруктовый коктейль.', img: IMG.shake }
+      ]}
+    ]
+  }
+};
+
+/* =====================================================================
+   СОСТОЯНИЕ И КОРЗИНЫ
+   ===================================================================== */
+const $ = (s) => document.querySelector(s);
+const state = {
+  loc: 'biketime',
+  cat: 'all',
+  q: '',
+  carts: {
+    biketime: [],
+    tochka: []
+  },
+  modalItem: null,
+  selectedSizeIndex: 0,
+  modalQty: 1
+};
+
+try {
+  const savedCarts = localStorage.getItem('bt_carts');
+  if (savedCarts) {
+    const parsed = JSON.parse(savedCarts);
+    if (parsed.biketime) state.carts.biketime = parsed.biketime;
+    if (parsed.tochka) state.carts.tochka = parsed.tochka;
+  }
+} catch (e) {}
+
+function saveCarts() {
+  try {
+    localStorage.setItem('bt_carts', JSON.stringify(state.carts));
+  } catch (e) {}
+  updateCartBadge();
+}
+
+/* =====================================================================
+   УТИЛИТЫ ФОРМАТИРОВАНИЯ
+   ===================================================================== */
+const esc = (s = '') => String(s).replace(/[&<>"']/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+const fmt = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') + '\u00A0₸';
+const norm = (s = '') => s.toLowerCase().replace(/ё/g, 'е').trim();
+const escRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const mapUrl = (q) => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
+
+function tokens(q) { return norm(q).split(/\s+/).filter(Boolean); }
+function hlRegex(q) {
+  const t = tokens(q);
+  if (!t.length) return null;
+  return new RegExp(t.map((x) => escRe(x).replace(/е/g, '[её]')).join('|'), 'gi');
+}
+function hl(text, re) {
+  if (!text) return '';
+  if (!re) return esc(text);
+  let out = '', last = 0;
+  for (const m of text.matchAll(re)) {
+    out += esc(text.slice(last, m.index)) + '<mark>' + esc(m[0]) + '</mark>';
+    last = m.index + m[0].length;
+  }
+  return out + esc(text.slice(last));
+}
+function matches(it, cat, toks) {
+  const hay = norm([it.n, it.d, it.v, cat.name].filter(Boolean).join(' '));
+  return toks.every((t) => hay.includes(t));
+}
+
+function sectionsFor(locKey, q, catId) {
+  const loc = LOCATIONS[locKey];
+  const toks = tokens(q);
+  let cats = loc.cats;
+  if (!toks.length && catId !== 'all') cats = cats.filter((c) => c.id === catId);
+  return cats
+    .map((c) => ({ cat: c, items: toks.length ? c.items.filter((it) => matches(it, c, toks)) : c.items }))
+    .filter((s) => s.items.length);
+}
+
+/* =====================================================================
+   ДРАГ-СКРОЛЛ ДЛЯ КАТЕГОРИЙ (PC МЫШЬ + КОЛЕСИКО + МОБИЛЬНЫЕ)
+   ===================================================================== */
+const chipsEl = $('#chips');
+let isMouseDown = false;
+let startX = 0;
+let scrollStartLeft = 0;
+let hasDragged = false;
+
+chipsEl.addEventListener('mousedown', (e) => {
+  isMouseDown = true;
+  hasDragged = false;
+  chipsEl.classList.add('is-dragging');
+  startX = e.pageX - chipsEl.offsetLeft;
+  scrollStartLeft = chipsEl.scrollLeft;
+});
+
+window.addEventListener('mouseup', () => {
+  if (isMouseDown) {
+    isMouseDown = false;
+    chipsEl.classList.remove('is-dragging');
+  }
+});
+
+chipsEl.addEventListener('mouseleave', () => {
+  if (isMouseDown) {
+    isMouseDown = false;
+    chipsEl.classList.remove('is-dragging');
+  }
+});
+
+chipsEl.addEventListener('mousemove', (e) => {
+  if (!isMouseDown) return;
+  e.preventDefault();
+  const x = e.pageX - chipsEl.offsetLeft;
+  const walk = (x - startX) * 1.5;
+  if (Math.abs(walk) > 4) hasDragged = true;
+  chipsEl.scrollLeft = scrollStartLeft - walk;
+});
+
+chipsEl.addEventListener('wheel', (e) => {
+  if (e.deltaY !== 0) {
+    e.preventDefault();
+    chipsEl.scrollLeft += e.deltaY;
+  }
+}, { passive: false });
+
+function renderChips() {
+  const loc = LOCATIONS[state.loc];
+  const total = loc.cats.reduce((a, c) => a + c.items.length, 0);
+  const active = (id) => (!state.q && state.cat === id) ? ' active' : '';
+  chipsEl.innerHTML =
+    `<button class="chip${active('all')}" data-cat="all" role="tab">Все <span class="cnt">${total}</span></button>` +
+    loc.cats.map((c) =>
+      `<button class="chip${active(c.id)}" data-cat="${c.id}" role="tab">${c.emoji} ${esc(c.name)} <span class="cnt">${c.items.length}</span></button>`
+    ).join('');
+}
+
+function centerActiveChip() {
+  const a = chipsEl.querySelector('.chip.active');
+  if (!a) return;
+  chipsEl.scrollTo({ left: a.offsetLeft - (chipsEl.clientWidth - a.offsetWidth) / 2, behavior: 'smooth' });
+}
+
+/* =====================================================================
+   РЕНДЕР КАРТОЧЕК МЕНЮ
+   ===================================================================== */
+const menuEl = $('#menu'), qEl = $('#q'), clearEl = $('#clear');
+const segEl = $('#seg'), heroEl = $('#hero'), filterBar = $('#filterBar');
+
+function cardHTML(it, cat, re, idx) {
+  const img = it.img || cat.img;
+  const meta = [it.v, it.d].filter(Boolean).join(' · ');
+  let right = '', sizes = '';
+  if (it.s) {
+    sizes = `<div class="sizes c${it.s.length}">` +
+      it.s.map(([l, p]) => `<div class="size"><span>${esc(l)}</span><b>${fmt(p)}</b></div>`).join('') + '</div>';
+  } else {
+    right = `<div class="price">${fmt(it.p)}</div>`;
+  }
+  return `
+  <article class="card" data-cat-id="${cat.id}" data-item-id="${it.id}" style="--i:${Math.min(idx, 14)}">
+    <div class="thumb"><span aria-hidden="true">${cat.emoji}</span>
+      <img src="${esc(img)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+    </div>
+    <div class="info">
+      <h3>${hl(it.n, re)}</h3>
+      ${meta ? `<p>${hl(meta, re)}</p>` : ''}
+    </div>
+    ${right}${sizes}
+  </article>`;
+}
+
+function renderMenu() {
+  const re = hlRegex(state.q);
+  const sections = sectionsFor(state.loc, state.q, state.cat);
+  let html = '', idx = 0, found = 0;
+
+  if (!sections.length) {
+    const otherKey = state.loc === 'biketime' ? 'tochka' : 'biketime';
+    const other = state.q ? sectionsFor(otherKey, state.q, 'all') : [];
+    const otherCount = other.reduce((a, s) => a + s.items.length, 0);
+    html = `<div class="empty">
+      <div class="big">🔍</div>
+      <h3>Ничего не найдено</h3>
+      <div>По запросу «${esc(state.q)}» в ${esc(LOCATIONS[state.loc].name)} позиций нет.</div>
+      ${otherCount ? `<button type="button" data-switch="${otherKey}">Найдено в ${esc(LOCATIONS[otherKey].name)}: ${otherCount} →</button>` : ''}
+    </div>`;
+  } else {
+    sections.forEach((s) => {
+      found += s.items.length;
+      html += `<section class="section">
+        <div class="section-head"><span class="em">${s.cat.emoji}</span><h2>${esc(s.cat.name)}</h2><span class="line"></span><span class="n">${s.items.length}</span></div>
+        <div class="grid">${s.items.map((it) => cardHTML(it, s.cat, re, idx++)).join('')}</div>
+      </section>`;
+    });
+    if (state.q) html = `<p class="result-note">Найдено позиций: <b style="color:#fff">${found}</b></p>` + html;
+  }
+  menuEl.innerHTML = html;
+}
+
+/* =====================================================================
+   ЛОГОТИП И СМЕНА ЛОКАЦИЙ
+   ===================================================================== */
+function updateLogos(locKey) {
+  const heroWrap = $('#brandLogoWrap');
+  const footWrap = $('#footLogo');
+  if (locKey === 'tochka') {
+    const imgTag = `<img src="${LOGO_TOCHKA_IMG}" alt="TOCHKA COFFEE" />`;
+    heroWrap.innerHTML = imgTag;
+    footWrap.innerHTML = imgTag;
+  } else {
+    const svgTag = `<svg viewBox="0 0 200 200"><use href="#logo-biketime"/></svg>`;
+    heroWrap.innerHTML = svgTag;
+    footWrap.innerHTML = svgTag;
+  }
+}
+
+function applyLocationUI(key) {
+  const loc = LOCATIONS[key];
+  document.body.dataset.loc = key;
+  segEl.dataset.active = key;
+  segEl.querySelectorAll('button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.loc === key)));
+  $('#brandName').innerHTML = loc.nameHtml;
+  $('#brandTag').textContent = loc.tagline;
+  $('#addrText').textContent = loc.address;
+  $('#addrLink').href = mapUrl(loc.mapQuery);
+  $('#brandInsta').href = loc.insta;
+  $('#instaText').textContent = loc.instaHandle;
+  document.title = loc.name + ' — Меню | Павлодар';
+  updateLogos(key);
+  heroEl.classList.remove('swap'); void heroEl.offsetWidth; heroEl.classList.add('swap');
+}
+
+function setLocation(key, opts = {}) {
+  if (!LOCATIONS[key]) key = 'biketime';
+  const changed = key !== state.loc;
+  state.loc = key;
+  if (changed) state.cat = 'all';
+  applyLocationUI(key);
+  renderChips();
+  renderMenu();
+  centerActiveChip();
+  updateCartBadge();
+  if (opts.persist !== false) {
+    try { history.replaceState(null, '', '#' + key); } catch (e) {}
+    try { localStorage.setItem('menu-loc', key); } catch (e) {}
+  }
+}
+
+/* =====================================================================
+   МОДАЛЬНОЕ ОКНО ТОВАРА (ЦЕНА, СОСТАВ, ВЫБОР РАЗМЕРА, В КОРЗИНУ)
+   ===================================================================== */
+const productModal = $('#productModal');
+const modalBody = $('#modalBody');
+const modalProductTitle = $('#modalProductTitle');
+const modalQtyVal = $('#modalQtyVal');
+const modalPriceVal = $('#modalPriceVal');
+
+function openProductModal(item, cat) {
+  state.modalItem = item;
+  state.modalCat = cat;
+  state.modalQty = 1;
+  state.selectedSizeIndex = 0;
+  modalQtyVal.textContent = '1';
+
+  const img = item.img || cat.img;
+  modalProductTitle.textContent = item.n;
+
+  let sizeSelectorHtml = '';
+  if (item.s && item.s.length > 0) {
+    sizeSelectorHtml = `
+      <div class="size-picker-title">Выберите объём:</div>
+      <div class="size-picker-options">
+        ${item.s.map(([label, price], i) => `
+          <button type="button" class="size-option-btn ${i === 0 ? 'selected' : ''}" data-size-idx="${i}">
+            <div class="lbl">${esc(label)}</div>
+            <div class="val">${fmt(price)}</div>
+          </button>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  const volumeInfo = item.v ? `<div class="p-desc-box"><div class="p-desc-label">Объём / Порция</div><div class="p-desc-val">${esc(item.v)}</div></div>` : '';
+  const descInfo = item.d ? `<div class="p-desc-box"><div class="p-desc-label">Состав и описание</div><div class="p-desc-val">${esc(item.d)}</div></div>` : '';
+
+  modalBody.innerHTML = `
+    <div class="p-img-box">
+      <span>${cat.emoji}</span>
+      <img src="${esc(img)}" alt="${esc(item.n)}" onerror="this.remove()">
+    </div>
+    <h2 class="p-title">${esc(item.n)}</h2>
+    ${descInfo}
+    ${volumeInfo}
+    ${sizeSelectorHtml}
+  `;
+
+  updateModalPrice();
+  productModal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProductModal() {
+  productModal.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function getModalItemUnitData() {
+  const item = state.modalItem;
+  if (!item) return { price: 0, titleSuffix: '' };
+  if (item.s && item.s.length > 0) {
+    const s = item.s[state.selectedSizeIndex] || item.s[0];
+    return { price: s[1], titleSuffix: ` (${s[0]})` };
+  }
+  return { price: item.p || 0, titleSuffix: item.v ? ` (${item.v})` : '' };
+}
+
+function updateModalPrice() {
+  const unit = getModalItemUnitData();
+  const total = unit.price * state.modalQty;
+  modalPriceVal.textContent = fmt(total);
+}
+
+modalBody.addEventListener('click', (e) => {
+  const btn = e.target.closest('.size-option-btn');
+  if (!btn) return;
+  modalBody.querySelectorAll('.size-option-btn').forEach((b) => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  state.selectedSizeIndex = parseInt(btn.dataset.sizeIdx, 10) || 0;
+  updateModalPrice();
+});
+
+$('#modalMinusBtn').addEventListener('click', () => {
+  if (state.modalQty > 1) {
+    state.modalQty--;
+    modalQtyVal.textContent = state.modalQty;
+    updateModalPrice();
+  }
+});
+
+$('#modalPlusBtn').addEventListener('click', () => {
+  state.modalQty++;
+  modalQtyVal.textContent = state.modalQty;
+  updateModalPrice();
+});
+
+$('#modalAddCartBtn').addEventListener('click', () => {
+  if (!state.modalItem) return;
+  const unit = getModalItemUnitData();
+  const locCart = state.carts[state.loc];
+  const fullTitle = state.modalItem.n + unit.titleSuffix;
+
+  const existing = locCart.find((ci) => ci.id === state.modalItem.id && ci.title === fullTitle);
+  if (existing) {
+    existing.qty += state.modalQty;
+  } else {
+    locCart.push({
+      id: state.modalItem.id,
+      title: fullTitle,
+      price: unit.price,
+      qty: state.modalQty,
+      emoji: state.modalCat ? state.modalCat.emoji : '🍔'
+    });
+  }
+
+  saveCarts();
+  closeProductModal();
+
+  const fab = $('#cartFab');
+  fab.classList.add('scale-105');
+  setTimeout(() => fab.classList.remove('scale-105'), 200);
+});
+
+$('#modalCloseBtn').addEventListener('click', closeProductModal);
+productModal.addEventListener('click', (e) => {
+  if (e.target === productModal) closeProductModal();
+});
+
+/* =====================================================================
+   КОРЗИНА И ОФОРМЛЕНИЕ В WHATSAPP
+   ===================================================================== */
+const cartFab = $('#cartFab');
+const cartCountBadge = $('#cartCountBadge');
+const cartSumBadge = $('#cartSumBadge');
+const cartModal = $('#cartModal');
+const cartBody = $('#cartBody');
+const cartTotalVal = $('#cartTotalVal');
+
+function getCartSummary(locKey) {
+  const cart = state.carts[locKey] || [];
+  const count = cart.reduce((acc, it) => acc + it.qty, 0);
+  const total = cart.reduce((acc, it) => acc + (it.price * it.qty), 0);
+  return { cart, count, total };
+}
+
+function updateCartBadge() {
+  const summary = getCartSummary(state.loc);
+  cartCountBadge.textContent = summary.count;
+  cartSumBadge.textContent = fmt(summary.total);
+  if (summary.count > 0) {
+    cartFab.classList.add('show');
+  } else {
+    cartFab.classList.remove('show');
+  }
+}
+
+function openCartModal() {
+  renderCartContent();
+  cartModal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCartModal() {
+  cartModal.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function renderCartContent() {
+  const loc = LOCATIONS[state.loc];
+  const summary = getCartSummary(state.loc);
+  const cart = summary.cart;
+  const total = summary.total;
+
+  if (cart.length === 0) {
+    cartBody.innerHTML = `
+      <div class="empty">
+        <div class="big">🛒</div>
+        <h3>Ваша корзина пуста</h3>
+        <p>Выберите вкусные блюда или напитки из меню ${esc(loc.name)}</p>
+      </div>
+    `;
+    cartTotalVal.textContent = fmt(0);
+    $('#cartOrderWhatsappBtn').style.display = 'none';
+    return;
+  }
+
+  $('#cartOrderWhatsappBtn').style.display = 'flex';
+  cartTotalVal.textContent = fmt(total);
+
+  let html = `<div class="cart-list">`;
+  cart.forEach((item, idx) => {
+    html += `
+      <div class="cart-item">
+        <div class="c-item-info">
+          <div class="c-item-title">${item.emoji} ${esc(item.title)}</div>
+          <div class="c-item-sub">${fmt(item.price)} × ${item.qty}</div>
+        </div>
+        <div class="c-item-price">${fmt(item.price * item.qty)}</div>
+        <div class="qty-ctrl" style="margin-left:6px">
+          <button class="qty-btn" type="button" data-c-minus="${idx}">−</button>
+          <span class="qty-val">${item.qty}</span>
+          <button class="qty-btn" type="button" data-c-plus="${idx}">+</button>
+        </div>
+      </div>
+    `;
+  });
+  html += `</div>`;
+
+  html += `
+    <textarea id="cartComment" class="cart-note-input" rows="2" placeholder="Комментарий к заказу (например: без лука, к 14:30 или адрес доставки)..."></textarea>
+  `;
+
+  cartBody.innerHTML = html;
+}
+
+cartBody.addEventListener('click', (e) => {
+  const minus = e.target.closest('[data-c-minus]');
+  const plus = e.target.closest('[data-c-plus]');
+  const cart = state.carts[state.loc];
+
+  if (minus) {
+    const idx = parseInt(minus.dataset.cMinus, 10);
+    if (cart[idx]) {
+      if (cart[idx].qty > 1) {
+        cart[idx].qty--;
+      } else {
+        cart.splice(idx, 1);
+      }
+      saveCarts();
+      renderCartContent();
+    }
+  } else if (plus) {
+    const idx = parseInt(plus.dataset.cPlus, 10);
+    if (cart[idx]) {
+      cart[idx].qty++;
+      saveCarts();
+      renderCartContent();
+    }
+  }
+});
+
+$('#cartOrderWhatsappBtn').addEventListener('click', () => {
+  const loc = LOCATIONS[state.loc];
+  const summary = getCartSummary(state.loc);
+  const cart = summary.cart;
+  const total = summary.total;
+  if (cart.length === 0) return;
+
+  const commentEl = $('#cartComment');
+  const comment = commentEl ? commentEl.value.trim() : '';
+
+  let msg = 'Здравствуйте! Хочу сделать заказ в *' + loc.name + '*:\n\n';
+  cart.forEach((it, i) => {
+    msg += (i + 1) + '. ' + it.title + ' — ' + it.qty + ' шт. × ' + fmt(it.price) + ' = ' + fmt(it.price * it.qty) + '\n';
+  });
+  msg += '\n*Итого к оплате:* ' + fmt(total);
+
+  if (comment) {
+    msg += '\n*Комментарий:* ' + comment;
+  }
+
+  msg += '\n\n(Заказ оформлен через электронное меню)';
+
+  const waUrl = 'https://api.whatsapp.com/send?phone=' + loc.whatsapp + '&text=' + encodeURIComponent(msg);
+  window.open(waUrl, '_blank');
+});
+
+cartFab.addEventListener('click', openCartModal);
+$('#cartCloseBtn').addEventListener('click', closeCartModal);
+cartModal.addEventListener('click', (e) => {
+  if (e.target === cartModal) closeCartModal();
+});
+
+/* =====================================================================
+   СЛУШАТЕЛИ СОБЫТИЙ МЕНЮ И КАТЕГОРИЙ
+   ===================================================================== */
+segEl.addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-loc]');
+  if (b) setLocation(b.dataset.loc);
+});
+
+chipsEl.addEventListener('click', (e) => {
+  if (hasDragged) return;
+  const c = e.target.closest('.chip');
+  if (!c) return;
+  state.cat = c.dataset.cat;
+  if (state.q) { state.q = ''; qEl.value = ''; clearEl.classList.remove('show'); }
+  renderChips(); renderMenu(); centerActiveChip(); scrollToMenuTop();
+});
+
+qEl.addEventListener('input', () => {
+  state.q = qEl.value;
+  clearEl.classList.toggle('show', !!qEl.value);
+  renderChips(); renderMenu();
+});
+qEl.addEventListener('keydown', (e) => { if (e.key === 'Enter') qEl.blur(); });
+clearEl.addEventListener('click', () => {
+  qEl.value = ''; state.q = ''; clearEl.classList.remove('show');
+  renderChips(); renderMenu(); qEl.focus();
+});
+
+menuEl.addEventListener('click', (e) => {
+  const sw = e.target.closest('[data-switch]');
+  if (sw) {
+    setLocation(sw.dataset.switch, { scroll: false });
+    return;
+  }
+  const card = e.target.closest('.card');
+  if (card) {
+    const catId = card.dataset.catId;
+    const itemId = card.dataset.itemId;
+    const loc = LOCATIONS[state.loc];
+    const cat = loc.cats.find((c) => c.id === catId);
+    if (cat) {
+      const item = cat.items.find((it) => it.id === itemId);
+      if (item) openProductModal(item, cat);
+    }
+  }
+});
+
+function scrollToMenuTop() {
+  const offset = $('.switcher').offsetHeight + filterBar.offsetHeight;
+  const y = menuEl.getBoundingClientRect().top + window.scrollY - offset - 8;
+  if (window.scrollY > y) window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+}
+
+window.addEventListener('hashchange', () => {
+  const k = location.hash.replace('#', '');
+  if (LOCATIONS[k] && k !== state.loc) setLocation(k, { persist: false });
+});
+
+const toTop = $('#toTop');
+window.addEventListener('scroll', () => toTop.classList.toggle('show', window.scrollY > 700), { passive: true });
+toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+$('#year').textContent = new Date().getFullYear();
+['biketime', 'tochka'].forEach((k) => {
+  const a = $('#f-addr-' + k);
+  a.textContent = LOCATIONS[k].address;
+  a.href = mapUrl(LOCATIONS[k].mapQuery);
+  $('#f-hours-' + k).textContent = LOCATIONS[k].hours;
+});
+
+(function init() {
+  let key = location.hash.replace('#', '');
+  if (!LOCATIONS[key]) { try { key = localStorage.getItem('menu-loc'); } catch (e) {} }
+  if (!LOCATIONS[key]) key = 'biketime';
+  state.loc = '';
+  setLocation(key, { scroll: false });
+  updateCartBadge();
+})();
+</script>
+</body>
+</html>
+```[cite: 3]
